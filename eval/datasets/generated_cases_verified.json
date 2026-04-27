@@ -1,0 +1,519 @@
+[
+  {
+    "id": "case_001",
+    "input": "What is the popluation of USA in 2020?",
+    "category": "typo_metric",
+    "tags": [
+      "typo",
+      "metric",
+      "single_place",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "country/USA",
+      "stat_var": "Count_Person",
+      "date": "2020"
+    }
+  },
+  {
+    "id": "case_002",
+    "input": "Show me the GDP for Californa in 2018.",
+    "category": "typo_place",
+    "tags": [
+      "typo",
+      "place",
+      "single_place",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "geoId/06",
+      "stat_var": "Amount_EconomicActivity_GrossDomesticProduction_Nominal",
+      "date": "2018"
+    }
+  },
+  {
+    "id": "case_003",
+    "input": "Compare Japan's unemployement rate in 2020 with Korea.",
+    "category": "typo_plus_ambiguous_place",
+    "tags": [
+      "typo",
+      "metric",
+      "ambiguous_place",
+      "compare",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "country/JPN",
+      "stat_var": "UnemploymentRate_Person",
+      "date": "2020",
+      "comparison_places": [
+        "country/KOR"
+      ],
+      "comparison_operation": "compare"
+    }
+  },
+  {
+    "id": "case_004",
+    "input": "What is the median incom of Texas in 2021?",
+    "category": "typo_metric",
+    "tags": [
+      "typo",
+      "metric",
+      "single_place",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "geoId/48",
+      "stat_var": "Median_Income_Person",
+      "date": "2021"
+    }
+  },
+  {
+    "id": "case_005",
+    "input": "請告訴我台灣最新的總人口數。",
+    "category": "typo_multilingual_metric",
+    "tags": [
+      "typo",
+      "multilingual",
+      "metric",
+      "single_place",
+      "latest",
+      "zh"
+    ],
+    "expected_result": {
+      "place": "country/TWN",
+      "stat_var": "Count_Person",
+      "date": "LATEST"
+    }
+  },
+  {
+    "id": "case_006",
+    "input": "What is the average GDP for California in 2018 compared to Texas?",
+    "category": "typo_operation",
+    "tags": [
+      "typo",
+      "aggregation",
+      "operation",
+      "compare",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "geoId/06",
+      "stat_var": "Amount_EconomicActivity_GrossDomesticProduction_Nominal",
+      "date": "2018",
+      "comparison_places": [
+        "geoId/48"
+      ],
+      "comparison_operation": "average"
+    }
+  },
+  {
+    "id": "case_007",
+    "input": "What is the GDP for Georgia in 2018?",
+    "category": "ambiguous_place",
+    "tags": [
+      "ambiguous_place",
+      "single_place",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "geoId/13",
+      "stat_var": "Amount_EconomicActivity_GrossDomesticProduction_Nominal",
+      "date": "2018"
+    }
+  },
+  {
+    "id": "case_008",
+    "input": "Compare population of Congo in 2020 with Japan.",
+    "category": "ambiguous_place",
+    "tags": [
+      "ambiguous_place",
+      "compare",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "country/COD",
+      "stat_var": "Count_Person",
+      "date": "2020",
+      "comparison_places": [
+        "country/JPN"
+      ],
+      "comparison_operation": "compare"
+    }
+  },
+  {
+    "id": "case_009",
+    "input": "Compare the unemployment rate of Taiwan to Georgia in 2020.",
+    "category": "mixed_ambiguity",
+    "tags": [
+      "ambiguous_place",
+      "compare",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "country/TWN",
+      "stat_var": "UnemploymentRate_Person",
+      "date": "2020",
+      "comparison_places": [
+        "geoId/13"
+      ],
+      "comparison_operation": "compare"
+    }
+  },
+  {
+    "id": "case_010",
+    "input": "Compare unemployment rate in Japan in 2020 with South Korea.",
+    "category": "underspecified_place",
+    "tags": [
+      "compare",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "country/JPN",
+      "stat_var": "UnemploymentRate_Person",
+      "date": "2020",
+      "comparison_places": [
+        "country/KOR"
+      ],
+      "comparison_operation": "compare"
+    }
+  },
+  {
+    "id": "case_011",
+    "input": "What was the population of Taiwan in 2020 and 2021, and also from 2010 to 2015?",
+    "category": "constraint_conflict",
+    "tags": [
+      "conflict",
+      "time",
+      "range_vs_multiple_years",
+      "english"
+    ],
+    "expected_result": {
+      "error_type": "conflicting_time_constraints",
+      "failed_field": "time"
+    }
+  },
+  {
+    "id": "case_012",
+    "input": "Show me the GDP for California and Texas in 2018 and 2020, but only for 2019.",
+    "category": "constraint_conflict",
+    "tags": [
+      "conflict",
+      "time",
+      "multiple_years",
+      "compare",
+      "english"
+    ],
+    "expected_result": {
+      "error_type": "conflicting_time_constraints",
+      "failed_field": "time"
+    }
+  },
+  {
+    "id": "case_013",
+    "input": "What is the latest population of USA in 2020?",
+    "category": "constraint_conflict",
+    "tags": [
+      "conflict",
+      "time",
+      "latest_vs_year",
+      "english"
+    ],
+    "expected_result": {
+      "error_type": "conflicting_time_constraints",
+      "failed_field": "time"
+    }
+  },
+  {
+    "id": "case_014",
+    "input": "What is the unemployment rate in Japan from 2015 to 2020, but only in 2018?",
+    "category": "constraint_conflict",
+    "tags": [
+      "conflict",
+      "time",
+      "range_vs_year",
+      "english"
+    ],
+    "expected_result": {
+      "error_type": "conflicting_time_constraints",
+      "failed_field": "time"
+    }
+  },
+  {
+    "id": "case_015",
+    "input": "Rank the GDP for California, Texas, and New York for the latest year, and also for 2018 and 2019.",
+    "category": "constraint_conflict",
+    "tags": [
+      "conflict",
+      "time",
+      "rank",
+      "latest_vs_multiple_years",
+      "english"
+    ],
+    "expected_result": {
+      "error_type": "conflicting_time_constraints",
+      "failed_field": "time"
+    }
+  },
+  {
+    "id": "case_016",
+    "input": "What is the average population for Japan and South Korea from 2010 to 2020, but specifically in 2018?",
+    "category": "constraint_conflict",
+    "tags": [
+      "conflict",
+      "time",
+      "aggregation",
+      "range_vs_year",
+      "english"
+    ],
+    "expected_result": {
+      "error_type": "conflicting_time_constraints",
+      "failed_field": "time"
+    }
+  },
+  {
+    "id": "case_017",
+    "input": "What is the latest female population over 85?",
+    "category": "missing_place",
+    "tags": [
+      "missing_place",
+      "demographic_slice",
+      "latest",
+      "english"
+    ],
+    "expected_result": {
+      "place": null,
+      "stat_var": "Count_Person_85OrMoreYears_Female",
+      "date": "LATEST"
+    }
+  },
+  {
+    "id": "case_018",
+    "input": "What was the GDP in 2020?",
+    "category": "missing_place",
+    "tags": [
+      "missing_place",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": null,
+      "stat_var": "Amount_EconomicActivity_GrossDomesticProduction_Nominal",
+      "date": "2020"
+    }
+  },
+  {
+    "id": "case_019",
+    "input": "Show me the unemployment rate in 2021.",
+    "category": "missing_place",
+    "tags": [
+      "missing_place",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": null,
+      "stat_var": "UnemploymentRate_Person",
+      "date": "2021"
+    }
+  },
+  {
+    "id": "case_020",
+    "input": "請告訴我台灣在2020年的快樂指數。",
+    "category": "unsupported_metric",
+    "tags": [
+      "unsupported_metric",
+      "multilingual",
+      "single_place",
+      "single_year",
+      "zh"
+    ],
+    "expected_result": {
+      "error_type": "unsupported_metric",
+      "failed_field": "stat_var"
+    }
+  },
+  {
+    "id": "case_021",
+    "input": "What is the happiness score for Taiwan in 2020?",
+    "category": "unsupported_metric",
+    "tags": [
+      "unsupported_metric",
+      "single_place",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "error_type": "unsupported_metric",
+      "failed_field": "stat_var"
+    }
+  },
+  {
+    "id": "case_022",
+    "input": "What is the weather score for Japan in 2019?",
+    "category": "unsupported_metric",
+    "tags": [
+      "unsupported_metric",
+      "single_place",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "error_type": "unsupported_metric",
+      "failed_field": "stat_var"
+    }
+  },
+  {
+    "id": "case_023",
+    "input": "台灣的人口數。",
+    "category": "sparse_time_specification",
+    "tags": [
+      "latest",
+      "multilingual",
+      "single_place",
+      "zh"
+    ],
+    "expected_result": {
+      "place": "country/TWN",
+      "stat_var": "Count_Person",
+      "date": "LATEST"
+    }
+  },
+  {
+    "id": "case_024",
+    "input": "What is the population of Taiwan?",
+    "category": "sparse_time_specification",
+    "tags": [
+      "latest",
+      "single_place",
+      "english"
+    ],
+    "expected_result": {
+      "place": "country/TWN",
+      "stat_var": "Count_Person",
+      "date": "LATEST"
+    }
+  },
+  {
+    "id": "case_025",
+    "input": "Show the population trend for Japan from 2010 through 2020.",
+    "category": "range_query",
+    "tags": [
+      "range",
+      "single_place",
+      "english"
+    ],
+    "expected_result": {
+      "place": "country/JPN",
+      "stat_var": "Count_Person",
+      "date": ""
+    }
+  },
+  {
+    "id": "case_026",
+    "input": "顯示美國從2015年到2020年的失業率。",
+    "category": "range_query",
+    "tags": [
+      "range",
+      "single_place",
+      "multilingual",
+      "zh"
+    ],
+    "expected_result": {
+      "place": "country/USA",
+      "stat_var": "UnemploymentRate_Person",
+      "date": ""
+    }
+  },
+  {
+    "id": "case_027",
+    "input": "Rank the population of California, Texas, and New York in 2020.",
+    "category": "aggregation_rank",
+    "tags": [
+      "rank",
+      "compare",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "geoId/06",
+      "stat_var": "Count_Person",
+      "date": "2020",
+      "comparison_places": [
+        "geoId/48",
+        "geoId/36"
+      ],
+      "comparison_operation": "rank"
+    }
+  },
+  {
+    "id": "case_028",
+    "input": "What is the difference in unemployment rate between Japan and South Korea in 2020?",
+    "category": "aggregation_difference",
+    "tags": [
+      "difference",
+      "compare",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "country/JPN",
+      "stat_var": "UnemploymentRate_Person",
+      "date": "2020",
+      "comparison_places": [
+        "country/KOR"
+      ],
+      "comparison_operation": "difference"
+    }
+  },
+  {
+    "id": "case_029",
+    "input": "What is the sum of the population for California and Texas in 2020?",
+    "category": "aggregation_sum",
+    "tags": [
+      "sum",
+      "compare",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "geoId/06",
+      "stat_var": "Count_Person",
+      "date": "2020",
+      "comparison_places": [
+        "geoId/48"
+      ],
+      "comparison_operation": "sum"
+    }
+  },
+  {
+    "id": "case_030",
+    "input": "Which place had the highest GDP in 2018 among California, Texas, and New York?",
+    "category": "aggregation_max",
+    "tags": [
+      "max",
+      "compare",
+      "single_year",
+      "english"
+    ],
+    "expected_result": {
+      "place": "geoId/06",
+      "stat_var": "Amount_EconomicActivity_GrossDomesticProduction_Nominal",
+      "date": "2018",
+      "comparison_places": [
+        "geoId/48",
+        "geoId/36"
+      ],
+      "comparison_operation": "max"
+    }
+  }
+]
