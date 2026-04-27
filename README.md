@@ -66,6 +66,47 @@ Install dependencies:
 uv sync
 ```
 
+Create a local environment file from the template:
+
+```bash
+cp .env.copy .env
+```
+
+Then fill in the values you need in [`.env.copy`](/Users/vincenthsia/GoFreight_Homework/.env.copy:1):
+
+- `LLM_PROVIDER` and `LLM_MODEL`
+- the matching provider API key such as `GEMINI_API_KEY`, `OPENAI_API_KEY`, or `GROQ_API_KEY`
+- `DATACOMMONS_API_KEY` if you want to override the default bundled key
+
+For example, a Gemini setup looks like:
+
+```dotenv
+LLM_PROVIDER=gemini
+LLM_MODEL=gemini-2.5-flash
+GEMINI_API_KEY=your_api_key_here
+DATACOMMONS_API_KEY=your_datacommons_api_key_here
+```
+
+Minimal examples for the other providers:
+
+OpenAI:
+
+```dotenv
+LLM_PROVIDER=openai
+LLM_MODEL=gpt-4.1-mini
+OPENAI_API_KEY=your_api_key_here
+DATACOMMONS_API_KEY=your_datacommons_api_key_here
+```
+
+Groq:
+
+```dotenv
+LLM_PROVIDER=groq
+LLM_MODEL=llama-3.3-70b-versatile
+GROQ_API_KEY=your_api_key_here
+DATACOMMONS_API_KEY=your_datacommons_api_key_here
+```
+
 Run a single query:
 
 ```bash
