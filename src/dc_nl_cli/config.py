@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from dotenv import load_dotenv
 
 
-DEFAULT_DC_API_KEY = "AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI"
+
 DEFAULT_DC_BASE_URL = "https://api.datacommons.org/v2"
 DEFAULT_GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
 DEFAULT_OPENAI_BASE_URL = "https://api.openai.com/v1"
@@ -23,7 +23,7 @@ class Settings:
     openai_api_key: str | None = None
     groq_api_key: str | None = None
     ollama_api_key: str | None = None
-    datacommons_api_key: str = DEFAULT_DC_API_KEY
+    datacommons_api_key: str | None = None
     datacommons_base_url: str = DEFAULT_DC_BASE_URL
     gemini_base_url: str = DEFAULT_GEMINI_BASE_URL
     openai_base_url: str = DEFAULT_OPENAI_BASE_URL
@@ -43,7 +43,7 @@ def load_settings() -> Settings:
         openai_api_key=os.getenv("OPENAI_API_KEY"),
         groq_api_key=os.getenv("GROQ_API_KEY"),
         ollama_api_key=os.getenv("OLLAMA_API_KEY"),
-        datacommons_api_key=os.getenv("DATACOMMONS_API_KEY", DEFAULT_DC_API_KEY),
+        datacommons_api_key=os.getenv("DATACOMMONS_API_KEY"),
         datacommons_base_url=os.getenv("DATACOMMONS_BASE_URL", DEFAULT_DC_BASE_URL),
         gemini_base_url=os.getenv("GEMINI_BASE_URL", DEFAULT_GEMINI_BASE_URL),
         openai_base_url=os.getenv("OPENAI_BASE_URL", DEFAULT_OPENAI_BASE_URL),
