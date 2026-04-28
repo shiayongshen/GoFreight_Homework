@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from dotenv import load_dotenv
 
 
-
 DEFAULT_DC_BASE_URL = "https://api.datacommons.org/v2"
 DEFAULT_GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
 DEFAULT_OPENAI_BASE_URL = "https://api.openai.com/v1"
